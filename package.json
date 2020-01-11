@@ -1,0 +1,30 @@
+{
+  "name": "db-sprint",
+  "version": "1.0.0",
+  "description": "## Self-Study/Essay Questions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Derrick-Mei/db-sprint.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Derrick-Mei/db-sprint/issues"
+  },
+  "homepage": "https://github.com/Derrick-Mei/db-sprint#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.20.7",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
