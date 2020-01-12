@@ -41,6 +41,20 @@ function getResourcesByProjectId(project_id) {
   return db("resources").where({ project_id });
 }
 
+async function addProject(project) {
+  const [id] = await db("projects").insert(project);
+  return getProjectById(id);
+}
+
+async function addResource(resource) {
+  const [id] = await db("resources").insert(resource);
+  return getResourceById(id);
+}
+
+async function addTask(task) {
+  const [id] = await db("tasks").insert(task);
+  return getTasksById(id);
+}
 
 exports.module = {
   // MVP
