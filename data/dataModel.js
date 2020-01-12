@@ -17,7 +17,7 @@ async function getAllTasks() {
   return helpers.convertArrayToBool(tasks);
 }
 
-function getResourceById(id) {
+function getResourcesById(id) {
   return db("resources")
     .where({ id })
     .first();
@@ -72,7 +72,7 @@ async function addProject(project) {
 
 async function addResource(resource) {
   const [id] = await db("resources").insert(resource);
-  return getResourceById(id);
+  return getResourcesById(id);
 }
 
 async function addTask(task) {
@@ -86,7 +86,7 @@ module.exports = {
   getAllProjects,
   getAllTasks,
 
-  getResourceById,
+  getResourcesById,
   getProjectById,
   getTasksById,
 

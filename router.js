@@ -36,7 +36,7 @@ router.get("/projects/:id", async (req, res, next) => {
 });
 router.get("/resources/:id", async (req, res, next) => {
   try {
-    res.json(await db.getResourceById(req.params.id));
+    res.json(await db.getResourcesById(req.params.id));
   } catch (err) {
     next(err);
   }
