@@ -20,70 +20,46 @@ Demonstrate your understanding of this week's concepts by answering the followin
 ## Minimum Viable Product
 
 - [ ] Design the data model and use _knex migrations_ to create the database and tables.
+
 - [ ] Build an API with endpoints for:
   - [ ] adding resources.
-  - [ ] retrieving a list of resources.
   - [ ] adding projects.
-  - [ ] retrieving a list of projects.
   - [ ] adding tasks.
+  - [ ] retrieving a list of resources.
+  - [ ] retrieving a list of projects.
   - [ ] retrieving a list of tasks. **The list of tasks should include the project name and project description**.
+
 - [ ] When returning `project` or `task` information, the `completed` property should be `true` or `false`.
 
-For example, instead of returning a `task` that looks like this:
-
-```js
-{
-  id: 1,
-  name: 'convert to boolean',
-  completed: 1 // the database stores a 1 to represent true values on a boolean field
-}
-```
-
-The API should return:
-
-```js
-{
-  id: 1,
-  name: 'convert to boolean',
-  completed: true // write code to convert the 1 to true and 0 to false
-}
-```
 
 ### Business Rules
 
-- a `project` can have multiple `tasks`.
-- a `task` belongs to only one `project`.
-- a `project` can use multiple `resources`.
-- the same `resource` can be used in multiple `projects`.
-- when adding `projects` the client must provide a name, the description is optional.
-- when adding `resources` the client must provide a name, the description is optional.
-- when adding a `task` the client must provide a description, the notes are optional.
-- when adding a `task` the client must provide the `id` of an existing project.
-- for `projects` and `tasks` if no value is provided for the `completed` property, the API should provide a default value of `false`.
+- `projects` one to many `tasks`.
+- `projects` many to many `resources`.
 
-### Entities
+### Table Specs
 
-A `project` is what needs to be done. We want to store the following data about a `project`:
+`projects`
 
-- [ ] a unique Id.
-- [ ] a name. This column is required.
-- [ ] a description.
-- [ ] a boolean that indicates if the project has been completed. This column cannot be NULL, the default value should be `false`.
+- [ ] id
+- [ ] name - required
+- [ ] description
+- [ ] completed boolean - defaults to false - notNullable
 
-A `resource` is anything needed to complete a project, some examples are: a person, a tool, a meeting room or a software license. We want to store the following data about a `resource`:
+`resources`
 
 - [ ] a unique Id.
-- [ ] a name. This column is required.
-- [ ] a description.
+- [ ] name - required
+- [ ] description
 
 The database should not allow resources with duplicate names.
 
-An `task` one of the steps needed to complete the project. We want to store the following data about an `task`.
+`tasks`
 
-- [ ] a unique id.
-- [ ] a description of what needs to be done. This column is required.
-- [ ] a notes column to add additional information.
-- [ ] a boolean that indicates if the task has been completed. This column cannot be NULL, the default value should be `false`.
+- [ ] id
+- [ ] description - required
+- [ ] notes
+- [ ] completed boolean - defaults to false - notNullable
 
 ## Stretch Problem
 
