@@ -1,9 +1,14 @@
 module.exports = {
-  convertToBool
+  convertArrayToBool,
+  convertObjToBool
 };
 
-function convertToBool(array) {
+function convertArrayToBool(array) {
   return array.map(element => {
     return { ...element, completed: !!element.completed };
   });
+}
+
+function convertObjToBool(obj) {
+  return {...obj, completed: !!obj.completed}
 }
