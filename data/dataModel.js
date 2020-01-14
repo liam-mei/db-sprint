@@ -47,19 +47,23 @@ function getResourcesByProjectId(project_id) {
   return db("projects_resources as pr")
     .where({ "pr.project_id": project_id })
     .join("resources as r", "r.id", "pr.resource_id")
-    .select('r.*');
+    .select("r.*");
 }
 
 async function getCompleteProjectById(project_id) {
-  const promiseArray = [
-    getProjectById(project_id),
-    getResourcesByProjectId(project_id),
-    getTasksByProjectId(project_id)
-  ];
+  // const promiseArray = [
+  //   getProjectById(project_id),
+  //   getResourcesByProjectId(project_id),
+  //   getTasksByProjectId(project_id)
+  // ];
 
-  const [resolvedProject, resolvedResources, resolvedTasks] = await Promise.all(promiseArray);
+  // const [resolvedProject, resolvedResources, resolvedTasks] = await Promise.all(promiseArray);
 
-  const boolProject = helpers.convertObjToBool(resolvedProject)
+  const resolvedProject = await getProjectById(project_id);
+  const resolvedResources = await getResourcesByProjectId(project_id);
+  const resolvedTasks = await getTasksByProjectId(project_id);
+
+  const boolProject = helpers.convertObjToBool(resolvedProject);
   const boolTasks = helpers.convertArrayToBool(resolvedTasks);
 
   return { ...boolProject, resources: resolvedResources, tasks: boolTasks };

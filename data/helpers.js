@@ -5,7 +5,7 @@ module.exports = {
 
 function convertArrayToBool(array) {
   return array.map(element => {
-    return { ...element, completed: !!element.completed };
+    return convertObjToBool(element)
   });
 }
 
